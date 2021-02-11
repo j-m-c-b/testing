@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>See</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.1/socket.io.js"></script>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <img  id="domImage" alt="">
+
+    <script>
+        const socket = io.connect("http://192.168.1.57:8080");
+
+        var data = {
+
+        }
+        socket.emit("requestImage", data);
+
+        socket.on("view", (msg) => {
+            
+            console.log("got data")
+            document.querySelector("#domImage").src = msg.dataURL;
+            console.log("display data", Math.random())
+        }
+        )
+
+    </script>
+</body>
+
+</html>
